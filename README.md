@@ -145,15 +145,14 @@ full-stack-devops-node-java/
 
 ## 📸 Screenshots
 
-### Dashboard
-Add screenshot here
-
-### Grafana Dashboard
-Add screenshot here
+### Application Dashboard
+![Dashboard](./assets/devops-dashboard.png)
 
 ### Prometheus Targets
-Add screenshot here
+![Prometheus](./assets/prometheus-targets.png)
 
+### Grafana Monitoring Dashboard
+![Grafana](./assets/grafana-dashboard.png)
 ---
 
 ## 🚀 Local Setup & Installation
@@ -168,8 +167,8 @@ Make sure you have [Docker Desktop](https://www.docker.com/products/docker-deskt
 
 ```bash
 # 1. Clone the Repository
-git clone <repo-url>
-cd <repo-name>
+git clone https://github.com/deewakar05/full-stack-devops-node-java.git
+cd full-stack-devops-node-java
 
 # 2. Configure Environment Variables
 cp .env.example .env
