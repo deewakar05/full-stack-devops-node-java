@@ -1,11 +1,11 @@
 # ==========================================
 # Stage 1: Compilation & Packaging
 # ==========================================
-FROM maven:3.9.6-eclipse-temurin-17-alpine AS builder
+FROM maven:3.9.6-eclipse-temurin-17 AS builder
 
 WORKDIR /build
 
-# Copy Maven POM to cache dependencies
+# Copy Maven POM to cache dependencies first (layer caching optimisation)
 COPY pom.xml .
 
 # Download dependencies (improves caching speed on consecutive builds)
@@ -14,13 +14,13 @@ RUN mvn dependency:go-offline -B
 # Copy remaining source code
 COPY src ./src
 
-# Compile and package application (skipping unit tests as they run in the CI/CD pipeline)
+# Compile and package application (tests run in CI/CD pipeline)
 RUN mvn clean package -DskipTests -B
 
 # ==========================================
-# Stage 2: Optimized Runtime Environment
+# Stage 2: Optimised Runtime Environment
 # ==========================================
-FROM eclipse-temurin:17-jre-alpine
+FROM eclipse-temurin:17-jre
 
 WORKDIR /app
 
@@ -30,11 +30,11 @@ COPY --from=builder /build/target/*.jar app.jar
 # Expose internal port
 EXPOSE 8080
 
-# Configure JVM properties for containerized workloads
+# Configure JVM for containerised workloads
 ENV JAVA_OPTS="-XX:+UseG1GC -XX:MaxRAMPercentage=75.0 -Djava.security.egd=file:/dev/./urandom"
 
 # Set up non-root system user for security hardening
-RUN addgroup -S spring && adduser -S spring -G spring
+RUN groupadd -r spring && useradd -r -g spring spring
 USER spring:spring
 
 # Start application

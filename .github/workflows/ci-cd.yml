@@ -32,19 +32,17 @@ jobs:
       - name: Build React Frontend
         run: |
           cd frontend
-          # Generate package-lock.json if not present to ensure npm ci works
           if [ ! -f package-lock.json ]; then npm i --package-lock-only; fi
           npm ci
           npm run build
 
-      # 4. Test Node.js Service
+      # 4. Test Node.js Express Service
       - name: Test Node.js Express Service
         run: |
           cd node-service
-          # Generate package-lock.json if not present to ensure npm ci works
           if [ ! -f package-lock.json ]; then npm i --package-lock-only; fi
           npm ci
-          npm run test
+          npm test
 
       # 5. Set up Java Environment
       - name: Setup JDK 17 (Temurin)
@@ -63,20 +61,19 @@ jobs:
       # 7. Validate Docker Compose Syntax
       - name: Validate Docker Compose Configuration
         run: |
-          # Copy env template to .env to allow compose compiler to resolve variables
           cp .env.example .env
           docker compose config
 
       # 8. Verify Individual Docker Container Builds
       - name: Verify Docker Builds
         run: |
-          echo "Verifying Frontend Container build..."
-          docker build -t devops-frontend:test ./frontend
-          
-          echo "Verifying Node Service Container build..."
-          docker build -t devops-node-service:test ./node-service
-          
-          echo "Verifying Java Service Container build..."
-          docker build -t devops-java-service:test ./java-service
-          
-          echo "All builds and configurations validated successfully!"
+          echo "Building Frontend container..."
+          docker build -t devops-frontend:ci ./frontend
+
+          echo "Building Node Service container..."
+          docker build -t devops-node-service:ci ./node-service
+
+          echo "Building Java Service container..."
+          docker build -t devops-java-service:ci ./java-service
+
+          echo "All container builds validated successfully!"
