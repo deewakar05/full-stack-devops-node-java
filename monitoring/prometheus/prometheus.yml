@@ -1,0 +1,21 @@
+global:
+  scrape_interval: 5s     # Highly responsive scrape loop for local development and demonstration
+  evaluation_interval: 5s
+
+scrape_configs:
+  # 1. Scrape self-telemetry
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+
+  # 2. Scrape Node.js Service (via prom-client /metrics)
+  - job_name: 'node-service'
+    metrics_path: '/metrics'
+    static_configs:
+      - targets: ['node-service:3000']
+
+  # 3. Scrape Java Spring Boot Service (via Micrometer Actuator /actuator/prometheus)
+  - job_name: 'java-service'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: ['java-service:8080']

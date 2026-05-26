@@ -1,0 +1,128 @@
+version: '3.8'
+
+services:
+  # 1. MongoDB Database Service
+  mongodb:
+    image: mongo:6.0-jammy
+    container_name: mongodb
+    ports:
+      - "${MONGO_PORT:-27017}:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME:-admin}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD:-adminpassword}
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - devops-network
+    healthcheck:
+      # Lightweight database ping validation inside container
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  # 2. Node.js Express API Service
+  node-service:
+    build:
+      context: ./node-service
+      dockerfile: Dockerfile
+    container_name: node-service
+    ports:
+      - "${NODE_PORT:-3000}:3000"
+    environment:
+      NODE_PORT: 3000
+      MONGO_URI: ${MONGO_URI:-mongodb://admin:adminpassword@mongodb:27017/devopsdb?authSource=admin}
+    networks:
+      - devops-network
+    depends_on:
+      mongodb:
+        condition: service_healthy
+
+  # 3. Java Spring Boot API Service
+  java-service:
+    build:
+      context: ./java-service
+      dockerfile: Dockerfile
+    container_name: java-service
+    ports:
+      - "${JAVA_PORT:-8080}:8080"
+    environment:
+      MONGO_URI: ${MONGO_URI:-mongodb://admin:adminpassword@mongodb:27017/devopsdb?authSource=admin}
+    networks:
+      - devops-network
+    depends_on:
+      mongodb:
+        condition: service_healthy
+
+  # 4. React Frontend Web Service
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: frontend
+    networks:
+      - devops-network
+    depends_on:
+      - node-service
+      - java-service
+
+  # 5. Primary Nginx Ingress Gateway (Reverse Proxy Router)
+  nginx:
+    image: nginx:1.25-alpine
+    container_name: nginx-gateway
+    ports:
+      - "${NGINX_PORT:-80}:80"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+    networks:
+      - devops-network
+    depends_on:
+      - frontend
+      - node-service
+      - java-service
+
+  # 6. Prometheus Telemetry Server
+  prometheus:
+    image: prom/prometheus:v2.51.0
+    container_name: prometheus
+    ports:
+      - "${PROMETHEUS_PORT:-9090}:9090"
+    volumes:
+      - ./monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+    networks:
+      - devops-network
+    depends_on:
+      - node-service
+      - java-service
+
+  # 7. Grafana Metrics Visualization Dashboard
+  grafana:
+    build:
+      context: ./monitoring/grafana
+      dockerfile: Dockerfile
+    container_name: grafana
+    ports:
+      - "${GRAFANA_PORT:-3001}:3000" # Map host port 3001 to container port 3000
+    volumes:
+      - grafana_data:/var/lib/grafana
+    networks:
+      - devops-network
+    depends_on:
+      - prometheus
+
+networks:
+  devops-network:
+    driver: bridge
+
+volumes:
+  mongodb_data:
+    driver: local
+  prometheus_data:
+    driver: local
+  grafana_data:
+    driver: local

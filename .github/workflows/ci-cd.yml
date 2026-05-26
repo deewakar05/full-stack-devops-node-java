@@ -1,0 +1,82 @@
+name: DevOps CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  validate-and-test:
+    name: Build & Test Microservices
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout codebase
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # 2. Set up Node.js Environment
+      - name: Setup Node.js Environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: 'npm'
+          cache-dependency-path: |
+            frontend/package-lock.json
+            node-service/package-lock.json
+
+      # 3. Build React Frontend
+      - name: Build React Frontend
+        run: |
+          cd frontend
+          # Generate package-lock.json if not present to ensure npm ci works
+          if [ ! -f package-lock.json ]; then npm i --package-lock-only; fi
+          npm ci
+          npm run build
+
+      # 4. Test Node.js Service
+      - name: Test Node.js Express Service
+        run: |
+          cd node-service
+          # Generate package-lock.json if not present to ensure npm ci works
+          if [ ! -f package-lock.json ]; then npm i --package-lock-only; fi
+          npm ci
+          npm run test
+
+      # 5. Set up Java Environment
+      - name: Setup JDK 17 (Temurin)
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          cache: 'maven'
+
+      # 6. Build & Test Spring Boot Service
+      - name: Build & Test Spring Boot Service
+        run: |
+          cd java-service
+          mvn clean package -B
+
+      # 7. Validate Docker Compose Syntax
+      - name: Validate Docker Compose Configuration
+        run: |
+          # Copy env template to .env to allow compose compiler to resolve variables
+          cp .env.example .env
+          docker compose config
+
+      # 8. Verify Individual Docker Container Builds
+      - name: Verify Docker Builds
+        run: |
+          echo "Verifying Frontend Container build..."
+          docker build -t devops-frontend:test ./frontend
+          
+          echo "Verifying Node Service Container build..."
+          docker build -t devops-node-service:test ./node-service
+          
+          echo "Verifying Java Service Container build..."
+          docker build -t devops-java-service:test ./java-service
+          
+          echo "All builds and configurations validated successfully!"
