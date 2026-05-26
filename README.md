@@ -1,7 +1,6 @@
 # 🚀 Full Stack DevOps Node + Java Microservices Platform
 
 [![CI/CD Pipeline](https://github.com/deewakar05/full-stack-devops-node-java/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/deewakar05/full-stack-devops-node-java/actions/workflows/ci-cd.yml)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Docker Support](https://img.shields.io/badge/Docker-Enabled-blue?logo=docker&logoColor=white)](https://www.docker.com/)
 [![React](https://img.shields.io/badge/Frontend-React%2018-blue?logo=react&logoColor=white)](https://react.dev/)
 [![Node.js](https://img.shields.io/badge/Backend%201-Node%20Express-green?logo=nodedotjs&logoColor=white)](https://nodejs.org/)
@@ -97,7 +96,6 @@ This platform orchestrates seven distinct workloads within a secure virtual brid
 
 ```bash
 full-stack-devops-node-java/
-├── LICENSE                         # MIT Open Source License
 ├── README.md                       # Developer Portfolio Documentation
 ├── docker-compose.yml              # Central multi-container orchestration manifest
 ├── .env.example                    # Template parameters layout
