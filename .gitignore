@@ -50,3 +50,7 @@ bin/
 .env.development.local
 .env.test.local
 .env.production.local
+
+# College presentation guide
+presentation_guide.md
+

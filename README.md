@@ -1,32 +1,32 @@
 # 🚀 Full Stack DevOps Node + Java Microservices Platform
 
-[![DevOps Pipeline](https://github.com/deewakar05/full-stack-devops-node-java/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/deewakar05/full-stack-devops-node-java/actions/workflows/ci-cd.yml)
+[![CI/CD Pipeline](https://github.com/deewakar05/full-stack-devops-node-java/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/deewakar05/full-stack-devops-node-java/actions/workflows/ci-cd.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Docker Support](https://img.shields.io/badge/Docker-Enabled-blue?logo=docker)](https://www.docker.com/)
-[![React](https://img.shields.io/badge/Frontend-React%2018-blue?logo=react)](https://react.dev/)
-[![Node.js](https://img.shields.io/badge/Backend%201-Node%20Express-green?logo=nodedotjs)](https://nodejs.org/)
-[![Spring Boot](https://img.shields.io/badge/Backend%202-Spring%20Boot%203-red?logo=springboot)](https://spring.io/projects/spring-boot)
-[![Prometheus](https://img.shields.io/badge/Observability-Prometheus-orange?logo=prometheus)](https://prometheus.io/)
-[![Grafana](https://img.shields.io/badge/Telemetry-Grafana-orange?logo=grafana)](https://grafana.com/)
+[![Docker Support](https://img.shields.io/badge/Docker-Enabled-blue?logo=docker&logoColor=white)](https://www.docker.com/)
+[![React](https://img.shields.io/badge/Frontend-React%2018-blue?logo=react&logoColor=white)](https://react.dev/)
+[![Node.js](https://img.shields.io/badge/Backend%201-Node%20Express-green?logo=nodedotjs&logoColor=white)](https://nodejs.org/)
+[![Spring Boot](https://img.shields.io/badge/Backend%202-Spring%20Boot%203-red?logo=springboot&logoColor=white)](https://spring.io/projects/spring-boot)
+[![Prometheus](https://img.shields.io/badge/Observability-Prometheus-orange?logo=prometheus&logoColor=white)](https://prometheus.io/)
+[![Grafana](https://img.shields.io/badge/Telemetry-Grafana-orange?logo=grafana&logoColor=white)](https://grafana.com/)
 
-A production-ready, multi-language, fully containerised microservices architecture designed to showcase modern enterprise DevOps, containerisation, path-based reverse proxy ingress routing, automated CI/CD validation pipelines, and end-to-end real-time system observability.
+A production-ready, multi-language microservices architecture engineered to showcase modern enterprise DevOps, containerization, path-based reverse proxy ingress routing, automated CI/CD validation pipelines, and end-to-end real-time system observability.
 
 ---
 
 ## 💎 Key Highlights
 
-* **Production-Grade Microservices**: Built a modular, full-stack microservices platform using React (Vite), Node.js (Express), Java (Spring Boot 3), and MongoDB.
-* **Unified Ingress Gateway**: Configured Nginx to act as a path-based reverse proxy, natively resolving Cross-Origin Resource Sharing (CORS) and normalising headers.
-* **Multi-Container Orchestration**: Containerised 7 independent workloads using Docker and Docker Compose on a secure virtual bridge network.
-* **Robust Observability**: Fully integrated Prometheus metric scraping and a pre-configured Grafana telemetry dashboard for real-time JVM, Node, and database metrics.
-* **Automated CI/CD Pipeline**: Designed a GitHub Actions pipeline validating linting, running Jest/JUnit tests, verifying docker-compose syntax, and checking container builds.
-* **Resilient Startup Workflows**: Implemented database connection retry wrapper logic in backends to prevent container startup crashes.
+* **Full-Stack Platform**: Built a modular full-stack platform using React (Vite), Node.js (Express), Java (Spring Boot 3), and MongoDB.
+* **Orchestration**: Containerized and orchestrated **7 independent workloads** using Docker and Docker Compose on a secure virtual bridge network.
+* **Reverse Proxy Ingress**: Configured Nginx to act as a path-based reverse proxy gateway, natively resolving CORS and normalizing headers.
+* **CI/CD Automation**: Designed an automated integration pipeline using GitHub Actions to validate syntax, run Jest/JUnit tests, and verify container builds.
+* **Unified Observability**: Pre-provisioned Prometheus metric scraping and custom Grafana telemetry dashboards to monitor JVM, Node, and database health.
+* **Observability Console**: Designed a responsive, glassmorphic developer dashboard for live service and query status metrics.
 
 ---
 
 ## 🏛️ System Architecture
 
-This project orchestrates seven distinct workloads on a secure virtual bridge network. Nginx serves as the unified ingress gateway at port `80`, intercepting client calls and routing them to respective sub-networks while normalizing headers and natively resolving Cross-Origin Resource Sharing (CORS) constraints.
+This platform orchestrates seven distinct workloads within a secure virtual bridge network. Nginx serves as the unified ingress gateway at port `80`, intercepting client calls and routing them to respective services while shielding internal network topologies.
 
 ### Network Topology Diagram
 
@@ -68,24 +68,23 @@ This project orchestrates seven distinct workloads on a secure virtual bridge ne
 
 ---
 
-## 🛠️ Technology Stack
+## 🛠️ Tech Stack
 
-| Domain | Technology | Purpose |
-| :--- | :--- | :--- |
-| **Frontend** | React.js (v18) + Vite | Lightweight SPA, fast bundling, and modern UI capabilities |
-| **Backend 1** | Node.js (v18) + Express | High-concurrency API service, CORS, Prom-Client telemetry |
-| **Backend 2** | Java Spring Boot (v3) | Strong type safety, MVC controller patterns, Actuator metrics |
-| **Database** | MongoDB (v6) | High performance NoSQL storage layer |
-| **Ingress Gateway** | Nginx (v1.25) | Ingress reverse-proxy router, request headers normalizer |
-| **Containerization** | Docker / Docker Compose | Service isolation, repeatable multi-container deployments |
-| **CI/CD Automation** | GitHub Actions | Automated checkout, linting, Jest/JUnit testing, and Compose validation |
-| **Observability** | Prometheus + Grafana | Unified metrics collector and visual monitoring dashboard |
+| Domain | Technology | Version | Purpose |
+| :--- | :--- | :--- | :--- |
+| **Frontend** | React.js + Vite | v18.x | Lightweight SPA with high performance and modular component design |
+| **Backend 1** | Node.js + Express | v18.x | High-concurrency API service, CORS config, and Prom-Client telemetry |
+| **Backend 2** | Java Spring Boot | v3.x | Strong type safety, REST API endpoints, and Actuator metrics |
+| **Database** | MongoDB | v6.x | High performance NoSQL storage layer |
+| **Proxy / Ingress** | Nginx | v1.25 | Ingress reverse-proxy router and request header normalizer |
+| **Observability** | Prometheus & Grafana | Latest | Automated metric scraping and telemetry visualization panels |
+| **CI/CD Automation** | GitHub Actions | - | Automated validation: linting, tests, Compose, and Docker builds |
 
 ---
 
 ## ✨ Features
 
-* **Glassmorphic Interactive Dashboard**: A polished dark-mode console built using HSL color tokens, typography fonts (`Outfit`, `Inter`), and Lucide icons.
+* **Glassmorphic Developer Dashboard**: Polished dark-mode console built using HSL color tokens, typography fonts (`Outfit`, `Inter`), and Lucide icons.
 * **Real-time Latency Tickers**: Dynamically monitors API speeds and response payloads with a live request log audit feed.
 * **Resilient Startup Sequences**: Services feature smart retry wrappers when connecting to MongoDB, preventing container bootstrap crashes.
 * **Actuator and JVM Telemetry**: Exposes memory heaps, garbage collection, and CPU parameters from Spring Boot using Micrometer.
@@ -99,10 +98,9 @@ This project orchestrates seven distinct workloads on a secure virtual bridge ne
 ```bash
 full-stack-devops-node-java/
 ├── LICENSE                         # MIT Open Source License
-├── README.md                       # Comprehensive DevOps Portfolio Documentation
+├── README.md                       # Developer Portfolio Documentation
 ├── docker-compose.yml              # Central multi-container orchestration manifest
 ├── .env.example                    # Template parameters layout
-├── .env                            # Active environment configuration parameters
 ├── .github/
 │   └── workflows/
 │       └── ci-cd.yml               # GitHub Actions automated validation workflow
@@ -137,28 +135,24 @@ full-stack-devops-node-java/
 │   └── Dockerfile                  # Multi-stage Java compile and packaging
 └── monitoring/                     # Observability Suite
     ├── prometheus/
-    │   └── prometheus.yml            # Telemetry scraping intervals and tasks
+    │   └── prometheus.yml          # Telemetry scraping intervals and tasks
     └── grafana/
-        ├── Dockerfile                # Grafana container pre-loaded with configurations
-        └── provisioning/             # Auto-provisioned datasource & dashboard connectors
+        ├── Dockerfile              # Grafana container pre-loaded with configurations
+        └── provisioning/           # Auto-provisioned datasource & dashboard connectors
 ```
 
 ---
 
 ## 📸 Screenshots
 
-### React Frontend Ingress Dashboard
-> _Place a screenshot here showing the glassmorphic dark-mode interface, successful service health queries, latency metrics, and database status indicators._
-> 
-> ![Dashboard UI Mockup](https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1200&h=600)
+### Dashboard
+Add screenshot here
 
-### Grafana Microservices Observability Console
-> _Place a screenshot here illustrating real-time charts mapping CPU ratios, JVM memory limits, and HTTP request rate graphs._
-> 
-> ![Grafana UI Mockup](https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&fit=crop&q=80&w=1200&h=600)
+### Grafana Dashboard
+Add screenshot here
 
 ### Prometheus Targets
-> _Place a screenshot here displaying the active scraped microservices targets in UP state._
+Add screenshot here
 
 ---
 
@@ -167,31 +161,27 @@ full-stack-devops-node-java/
 Get the entire stack up and running on your local development machine with these quick steps:
 
 ### Prerequisites
+
 Make sure you have [Docker Desktop](https://www.docker.com/products/docker-desktop/) (which includes Docker Compose) installed.
 
 ### Setup Instructions
-1. **Clone the Repository**:
-   ```bash
-   git clone https://github.com/deewakar05/full-stack-devops-node-java.git
-   cd full-stack-devops-node-java
-   ```
 
-2. **Configure Environment Variables**:
-   Copy the example environment parameters layout:
-   ```bash
-   cp .env.example .env
-   ```
+```bash
+# 1. Clone the Repository
+git clone <repo-url>
+cd <repo-name>
 
-3. **Orchestrate Container Clusters**:
-   Build the multi-container images and run the services in the background:
-   ```bash
-   docker compose up --build -d
-   ```
+# 2. Configure Environment Variables
+cp .env.example .env
 
-4. **Verify Container Health**:
-   ```bash
-   docker compose ps
-   ```
+# 3. Orchestrate Container Clusters
+docker compose up --build -d
+```
+
+Verify container health by running:
+```bash
+docker compose ps
+```
 
 ---
 
@@ -199,27 +189,15 @@ Make sure you have [Docker Desktop](https://www.docker.com/products/docker-deskt
 
 Use these commands to easily manage your microservices container cluster:
 
-* **Stop the Cluster**:
-  ```bash
-  docker compose down
-  ```
-* **Tear Down Everything (including persistent volumes)**:
-  ```bash
-  docker compose down -v
-  ```
-* **View Integrated Logs**:
-  ```bash
-  docker compose logs -f
-  ```
-* **View Single Service Logs**:
-  ```bash
-  docker compose logs -f node-service
-  docker compose logs -f java-service
-  ```
-* **Rebuild a Specific Microservice**:
-  ```bash
-  docker compose up -d --no-deps --build node-service
-  ```
+| Command | Action |
+| :--- | :--- |
+| `docker compose up -d` | Start services in background |
+| `docker compose up --build -d` | Rebuild and start all services |
+| `docker compose down` | Stop the container cluster |
+| `docker compose down -v` | Tear down containers and wipe persistent database volumes |
+| `docker compose logs -f` | View integrated logs across all services |
+| `docker compose logs -f <service>` | View logs for a single service (e.g. `node-service` or `java-service`) |
+| `docker compose up -d --no-deps --build <service>` | Rebuild and restart a specific microservice |
 
 ---
 
@@ -237,11 +215,28 @@ Prometheus and Grafana require zero manual configuration on startup.
 
 ---
 
+## 🔮 CI/CD Pipeline
+
+The automated integration workflow is located in [`.github/workflows/ci-cd.yml`](.github/workflows/ci-cd.yml) and triggers on every `push` or `pull request` to the `main` branch.
+
+### Automated Pipeline Flow
+
+1. **Checkout**: Pulls the code from your repository.
+2. **Node.js Environment**: Sets up Node.js v18 and enables npm cache sharing.
+3. **Frontend Compilation**: Installs dependencies and runs `npm run build` to verify React compilation.
+4. **Node.js Automated Test**: Triggers the Jest unit test suite (`npm test`) on the Express API.
+5. **Java JDK Setup**: Configures JDK 17 (Temurin) and enables Maven dependency caching.
+6. **Java Automated Build**: Compiles Spring Boot source files, executes JUnit tests, and packages the final JAR.
+7. **Compose Validation**: Audits the syntactical structure of `docker-compose.yml` (`docker compose config`).
+8. **Docker Builds Check**: Manually compiles individual Dockerfiles (`frontend`, `node-service`, `java-service`) inside the runner to confirm the stability of each build layer.
+
+---
+
 ## 🛠️ Troubleshooting
 
 #### 1. Database status displays "DISCONNECTED" on Dashboard
 * **Cause**: MongoDB takes ~10 seconds to configure security credentials and report healthy. The backend services start instantly, but connect once the DB is ready.
-* **Resolution**: Wait 15 seconds, and then click **Test API** on the React UI. The status will automatically switch to **CONNECTED**.
+* **Resolution**: Wait 15 seconds, and then click **Test API** on the React UI. The status will automatically switch to **CONNECTED** thanks to the integrated backend retry loops.
 
 #### 2. Service container exits on startup due to Port Conflict
 * **Cause**: Your local machine already has a process running on one of the host ports (e.g. `80`, `3000`, `3001`, `8080`, `27017`).
@@ -259,24 +254,7 @@ Prometheus and Grafana require zero manual configuration on startup.
 
 ---
 
-## 🔮 Continuous Integration Pipeline (CI/CD)
-
-The automated integration workflow is located in [`.github/workflows/ci-cd.yml`](.github/workflows/ci-cd.yml).
-
-### Automated Pipeline Flow
-Every `push` or `pull request` to the `main` branch triggers the following steps on an Ubuntu runner:
-1. **Checkout**: Pulls the code from your repository.
-2. **Node.js Environment**: Sets up Node.js v18 and enables npm cache sharing.
-3. **Frontend Compilation**: Installs dependencies and runs `npm run build` to verify React compilation.
-4. **Node.js Automated Test**: Triggers the Jest unit test suite (`npm test`) on the Express API.
-5. **Java JDK Setup**: Configures JDK 17 (Temurin) and enables Maven dependency caching.
-6. **Java Automated Build**: Compiles Spring Boot source files, executes JUnit tests, and packages the final JAR.
-7. **Compose Validation**: Audits the syntactical structure of `docker-compose.yml` (`docker compose config`).
-8. **Docker Builds Check**: Manually compiles individual Dockerfiles (`frontend`, `node-service`, `java-service`) inside the runner to confirm the stability of each build layer.
-
----
-
-## 🚀 Git Commands for Uploading to GitHub
+## 🚀 GitHub Push Commands
 
 To push your production-ready project to your own GitHub repository:
 
@@ -288,7 +266,7 @@ git init
 git add .
 
 # 3. Commit with professional descriptive message
-git commit -m "Final production-ready full stack DevOps microservices project"
+git commit -m "feat: production-ready full stack DevOps microservices platform"
 
 # 4. Set primary branch to main
 git branch -M main
@@ -302,10 +280,11 @@ git push -u origin main
 
 ---
 
-## 🔮 Future Architecture Roadmap
+## 🔮 Future Improvements
 
 Consider the following production-grade enhancements to scale this platform:
-1. **Kubernetes (K8s) Migration**: Translate Docker Compose services to K8s manifests, utilising Horizontal Pod Autoscalers (HPAs) and Helm charts.
+
+1. **Kubernetes (K8s) Migration**: Translate Docker Compose services to K8s manifests, utilizing Horizontal Pod Autoscalers (HPAs) and Helm charts.
 2. **Secret Management**: Inject database credentials using HashiCorp Vault or AWS Secrets Manager rather than plaintext environmental values.
 3. **Distributed Tracing**: Integrate Jaeger or Zipkin into backends alongside Prometheus to monitor request traces across network services.
 4. **Security Vulnerability Scanning**: Integrate Trivy or Snyk steps into the GitHub Actions pipeline to scan dependencies and Docker layers.
