@@ -8,8 +8,8 @@ WORKDIR /build
 # Copy Maven POM to cache dependencies first (layer caching optimisation)
 COPY pom.xml .
 
-# Download dependencies (improves caching speed on consecutive builds)
-RUN mvn dependency:go-offline -B
+# Download dependencies (improves caching speed on consecutive builds; fallback to package step if failing)
+RUN mvn dependency:go-offline -B || true
 
 # Copy remaining source code
 COPY src ./src
